@@ -1,0 +1,27 @@
+# This file contains information about people who have contributed to various
+# parts of the library. Names are listed in alphabetical order, by first name.
+
+
+Chris Lenk                                              @clenk <clenk@mitre.org>
+ - STIX2 Pattern grammar
+ - Conversions of STIX2 literals to Python primitives
+
+
+Danny Elliott                              @delliott90 <danny.elliott@gmail.com>
+ - STIX2 Pattern grammar
+
+
+Greg Back                                              @gtback <gback@mitre.org>
+ - cti-pattern-validator / cti-pattern-matcher organization
+
+
+Michael Chisholm                                  @chisholm <chisholm@mitre.org>
+ - STIX2 Pattern grammar
+ - STIX2 Pattern ANTLR parsing routines
+ - Conversions of STIX2 literals to Python primitives
+
+
+Zach Kanzler                                    @they4kman <z@perchsecurity.com>
+ - PatternTree Visitor
+ - PatternTree YAML DSL
+ - STIX2 Pattern grammar compiling tool
