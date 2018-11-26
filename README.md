@@ -1,4 +1,6 @@
 # dendrol
+[![dendrol PyPI version](https://badge.fury.io/py/dendrol.svg)](https://pypi.python.org/pypi/dendrol/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/dendrol.svg)](https://pypi.python.org/pypi/dendrol/) [![PyPI license](https://img.shields.io/pypi/l/dendrol.svg)](https://pypi.python.org/pypi/dendrol/)
+
 
 dendrol is a library which parses STIX2 Pattern Expressions into dict-based tree structures (codenamed PatternTrees) for easy consumption.
 
