@@ -135,6 +135,22 @@ pattern:
 For more info, read [The Spec](#the-spec) below, or check out the tests.
 
 
+# Development
+To develop dendrol and run its tests, first clone the repo. Then install the dev and testing dependencies:
+```bash
+pip install .[dev] .[test]
+```
+
+pytest is used for testing:
+```bash
+py.test
+```
+
+Reported issues and pull requests welcomed! From new features and suggestions to typo fixes and poor naming choices, fresh eyes bolster software eternally in development.
+
+If submitting a pull request, please add yourself to the CONTRIBUTORS file for a piece of that sweet, sweet street cred!
+
+
 # <a name="the-spec" href="#the-spec">The Spec</a>
 ## Brief
 A PatternTree begins with a `'pattern'` key. Below it is an observation expression, with an `'observation'` or `'expression'` key (which may contain more observation expressions joined by AND/OR/FOLLOWEDBY). Below `'observation'` keys are comparison expressions, marked by a `'comparison'` or `'expression'` key (which may contain more comparison expressions joined by AND/OR). `'comparison'` keys denote a single comparison between an object property and a literal value.
