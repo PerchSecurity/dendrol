@@ -57,4 +57,12 @@ setup(
     tests_require=[
         'dendrol[test]',
     ],
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Security',
+    ],
 )
