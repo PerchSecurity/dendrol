@@ -1,22 +1,29 @@
-# dendrol
-[![dendrol PyPI version](https://badge.fury.io/py/dendrol.svg)](https://pypi.python.org/pypi/dendrol/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/dendrol.svg)](https://pypi.python.org/pypi/dendrol/) [![PyPI license](https://img.shields.io/pypi/l/dendrol.svg)](https://pypi.python.org/pypi/dendrol/)
+<h1 align="center">
+  <img alt="dendrol" width="30%" src="https://user-images.githubusercontent.com/33840/49051814-6b853000-f1b7-11e8-8364-179836f1c316.png">
+</h1>
+<p align="center">
+  <a href="https://pypi.python.org/pypi/dendrol/">
+    <img alt="dendrol PyPI version" src="https://camo.githubusercontent.com/be46feea7129311b3dafeef4ac272061f21293de/68747470733a2f2f62616467652e667572792e696f2f70792f64656e64726f6c2e737667">
+  </a> 
+  <a href="https://pypi.python.org/pypi/dendrol/">
+    <img alt="PyPI pyversions" src="https://camo.githubusercontent.com/9b638ffc22ef0b3bd395012d65984ed2c6e1de8e/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f64656e64726f6c2e737667">
+  </a>
+  <a href="https://pypi.python.org/pypi/dendrol/">
+    <img alt="PyPI license" src="https://camo.githubusercontent.com/7ec6b5aecd3c32e4f25d596c8045bf5ffbe7a9af/68747470733a2f2f696d672e736869656c64732e696f2f707970692f6c2f64656e64726f6c2e737667">
+  </a>
+</p>
 
+<p align="center">
+  <b>dendrol</b> parses STIX2 pattern expressions into basic Python structures
+</p>
 
-dendrol is a library which parses STIX2 Pattern Expressions into dict-based tree structures (codenamed PatternTrees) for easy consumption.
-
-To aid in verification and troubleshooting, dendrol can read and write PatternTrees in a human-readable YAML-based format.
-
-
-# Quick! Show me things!
-
-[![image002 1](https://user-images.githubusercontent.com/33840/47131128-027ed400-d26b-11e8-950b-4c494c9cf4c5.png)](http://docs.oasis-open.org/cti/stix/v2.0/cs01/part5-stix-patterning/stix-v2.0-cs01-part5-stix-patterning.html#_t7hu3hrkvmff)
+<p align="center">
+  <a href="http://docs.oasis-open.org/cti/stix/v2.0/cs01/part5-stix-patterning/stix-v2.0-cs01-part5-stix-patterning.html#_t7hu3hrkvmff">
+    <img alt="Iconic STIX2 Pattern visualization" src="https://user-images.githubusercontent.com/33840/47131128-027ed400-d26b-11e8-950b-4c494c9cf4c5.png">
+  </a>
+</p>
 
 This iconic [STIX2 Pattern](http://docs.oasis-open.org/cti/stix/v2.0/cs01/part5-stix-patterning/stix-v2.0-cs01-part5-stix-patterning.html#_t7hu3hrkvmff) visualization is based upon this example expression:
-```
-([ipv4-addr:value = '198.51.100.1/32' OR ipv4-addr:value = '203.0.113.33/32' OR ipv6-addr:value = '2001:0db8:dead:beef:dead:beef:dead:0001/128'] FOLLOWEDBY [domain-name:value = 'example.com']) WITHIN 600 SECONDS
-```
-
-Here's the same expression expanded into something more consumable
 ```
 (
   [ipv4-addr:value = '198.51.100.1/32' OR
@@ -88,6 +95,7 @@ dendrol provides an interface for parsing STIX2 Pattern Expressions much like [c
 
 ```py
 from dendrol import Pattern
+
 pattern = Pattern("[domain-name:value = 'http://xyz.com/download']")
 
 assert pattern.to_dict_tree() == {
@@ -114,6 +122,7 @@ A specialized YAML representation is also proposed, to make visualization of thi
 
 ```py
 from dendrol import Pattern
+
 pattern = Pattern("[domain-name:value = 'http://xyz.com/download']")
 
 assert str(pattern.to_dict_tree()) == '''\
