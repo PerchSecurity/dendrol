@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="dendrol" src="https://user-images.githubusercontent.com/33840/49052943-097af980-f1bc-11e8-8786-b2a5c14efa15.png">
+  <img alt="dendrol" src="https://user-images.githubusercontent.com/33840/49189283-aadc8980-f33b-11e8-9505-77f074448474.png">
 </h1>
 <p align="center">
   <a href="https://pypi.python.org/pypi/dendrol/">
