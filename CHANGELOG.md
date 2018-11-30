@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [0.0.4] - 2018-11-30
+### Fixed
+ - Update logo markup for compatibility with PyPI (see [pypa/readme_renderer#126](https://github.com/pypa/readme_renderer/issues/126))
+
+
 ## [0.0.3] - 2018-11-30
 ### Changed
  - Update logo
