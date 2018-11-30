@@ -1,5 +1,8 @@
 <h1 align="center">
-  <img alt="dendrol" src="https://user-images.githubusercontent.com/33840/49189283-aadc8980-f33b-11e8-9505-77f074448474.png">
+  <!-- a bug prevents PyPI from aligning header tags: https://github.com/pypa/readme_renderer/issues/126 -->
+  <p align="center">
+    <img alt="dendrol" src="https://user-images.githubusercontent.com/33840/49189283-aadc8980-f33b-11e8-9505-77f074448474.png">
+  </p>
 </h1>
 <p align="center">
   <a href="https://pypi.python.org/pypi/dendrol/">
