@@ -40,7 +40,7 @@ setup(
     install_requires=[
         # TODO: laxer req versions
         'antlr4-python3-runtime==4.7',
-        'PyYAML==3.12',
+        'PyYAML>=3.12,<4',
     ],
     extras_require={
         'test': [
