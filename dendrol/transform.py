@@ -1,22 +1,13 @@
+# -*- coding: utf-8 -*-
 import base64
 import binascii
 from collections import OrderedDict
 from datetime import date, datetime, tzinfo
-from typing import Iterable, List, Type, Union, Set, TypeVar, NewType, Dict
 
 from . import tz
 from .lang.STIXPatternParser import STIXPatternParser, ParserRuleContext
 from .lang.STIXPatternVisitor import STIXPatternVisitor
 
-
-ConvertedStixLiteral = NewType('ConvertedStixLiteral', Union[
-    int,
-    str,
-    bool,
-    float,
-    bytes,
-    datetime,
-])
 
 
 class PatternTree(dict):
@@ -35,14 +26,14 @@ class PatternTree(dict):
         return dump_tree(self)
 
     @classmethod
-    def from_dict(cls, d: dict) -> 'PatternTree':
+    def from_dict(cls, d):
         """Transform a regular Python dict to PatternTree's types and orderings
 
         XXX: a more holistic/less context-dependent way of doing this (and all
              the format methods below) might be using OrderedDict subclasses
              for each node type (CompositeObservation, SimpleComparison, etc)
         """
-        if d.keys() != {'pattern'}:
+        if set(d.keys()) != {'pattern'}:
             raise ValueError('Expected a dict with one top-level key, "pattern"')
 
         tree = PatternTree(d)
@@ -69,8 +60,11 @@ class PatternTree(dict):
             node_type, body = next(iter(node.items()))
             if node_type not in OBSERVATION_TYPES:
                 raise ValueError(
-                    f'Unexpected observation type {repr(node_type)}. '
-                    f'Expected one of: {OBSERVATION_TYPES.keys()}')
+                    'Unexpected observation type {node_type}. '
+                    'Expected one of: {available_types}'.format(
+                        node_type=repr(node_type),
+                        available_types=OBSERVATION_TYPES.keys(),
+                    ))
 
             formatter = OBSERVATION_TYPES[node_type]
             node.update(formatter(**body))
@@ -98,8 +92,10 @@ class PatternTree(dict):
             qualifier_type, body = next(iter(qualifier.items()))
             if qualifier_type not in QUALIFIER_TYPES:
                 raise ValueError(
-                    f'Unexpected qualifier type {repr(qualifier_type)}. '
-                    f'Expected one of: {QUALIFIER_TYPES.keys()}')
+                    'Unexpected qualifier type {}. '
+                    'Expected one of: {}'.format(
+                        repr(qualifier_type), QUALIFIER_TYPES.keys()
+                    ))
 
             formatter = QUALIFIER_TYPES[qualifier_type]
             qualifier.update(formatter(**body))
@@ -119,8 +115,10 @@ class PatternTree(dict):
             node_type, body = next(iter(node.items()))
             if node_type not in COMPARISON_TYPES:
                 raise ValueError(
-                    f'Unexpected comparison type {repr(node_type)}. '
-                    f'Expected one of: {COMPARISON_TYPES.keys()}')
+                    'Unexpected comparison type {}. '
+                    'Expected one of: {}'.format(
+                        repr(node_type), COMPARISON_TYPES.keys()
+                    ))
 
             formatter = COMPARISON_TYPES[node_type]
             node.update(formatter(**body))
@@ -132,15 +130,15 @@ class PatternTree(dict):
         return tree
 
     @classmethod
-    def format_pattern(cls, *, root: dict):
+    def format_pattern(cls, root):
         return cls(pattern=root)
 
     @classmethod
-    def format_composite_observation(cls, *,
-                                     expressions: List[Dict[str, dict]],
-                                     join: str = None,
-                                     qualifiers: List[Dict[str, dict]] = None,
-                                     ) -> Dict[str, OrderedDict]:
+    def format_composite_observation(cls,
+                                     expressions,
+                                     join,
+                                     qualifiers,
+                                     ):
         return {
             'expression': OrderedDict([
                 ('join', join),
@@ -150,12 +148,12 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_simple_observation(cls, *,
-                                  objects: Iterable[str],
-                                  expressions: List[Dict[str, dict]],
-                                  join: str = None,
-                                  qualifiers: List[Dict[str, dict]] = None,
-                                  ) -> Dict[str, OrderedDict]:
+    def format_simple_observation(cls,
+                                  objects               ,
+                                  expressions                       ,
+                                  join      = None,
+                                  qualifiers                        = None,
+                                  )                          :
         if not isinstance(objects, ObjectTypeSet):
             objects = ObjectTypeSet(objects)
 
@@ -163,19 +161,19 @@ class PatternTree(dict):
             'observation': OrderedDict([
                 ('objects', objects),
                 ('join', join),  # XXX: should this be allowed?
-                                 # I kinda figured it would be convenient to rollup the first
-                                 # composite comparison into its parent observation... but this
-                                 # may make traversal implementations cumbersome.
+                # I kinda figured it would be convenient to rollup the first
+                # composite comparison into its parent observation... but this
+                # may make traversal implementations cumbersome.
                 ('qualifiers', qualifiers),
                 ('expressions', expressions),
             ]),
         }
 
     @classmethod
-    def format_composite_comparison(cls, *,
-                                    expressions: List[Dict[str, dict]],
-                                    join: str = None,
-                                    ) -> Dict[str, OrderedDict]:
+    def format_composite_comparison(cls,
+                                    expressions                       ,
+                                    join      = None,
+                                    )                          :
         return {
             'expression': OrderedDict([
                 ('join', join),
@@ -184,13 +182,13 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_simple_comparison(cls, *,
-                                 object: str,
-                                 path: List[Union[str, slice]],
-                                 operator: str,
-                                 value: ConvertedStixLiteral,
-                                 negated: bool = None,
-                                 ) -> Dict[str, OrderedDict]:
+    def format_simple_comparison(cls,
+                                 object     ,
+                                 path                         ,
+                                 operator     ,
+                                 value                      ,
+                                 negated       = None,
+                                 )                          :
         if not isinstance(path, ObjectPath):
             # Converting path to our special type ensures uniform string
             # representations, enabling useful text diffing.
@@ -207,10 +205,10 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_start_stop_qualifier(cls, *,
-                                    start: datetime,
-                                    stop: datetime,
-                                    ) -> Dict[str, OrderedDict]:
+    def format_start_stop_qualifier(cls,
+                                    start          ,
+                                    stop          ,
+                                    )                          :
         return {
             'start_stop': OrderedDict([
                 ('start', cls.format_literal(start)),
@@ -219,10 +217,10 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_within_qualifier(cls, *,
-                                value: int,
-                                unit: str = 'SECONDS',
-                                ) -> Dict[str, OrderedDict]:
+    def format_within_qualifier(cls,
+                                value     ,
+                                unit      = 'SECONDS',
+                                )                          :
         return {
             'within': OrderedDict([
                 ('value', cls.format_literal(value)),
@@ -231,7 +229,7 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_repeats_qualifier(cls, *, value: int) -> Dict[str, OrderedDict]:
+    def format_repeats_qualifier(cls, value     )                          :
         return {
             'repeats': OrderedDict([
                 ('value', cls.format_literal(value)),
@@ -239,7 +237,7 @@ class PatternTree(dict):
         }
 
     @classmethod
-    def format_object_path(cls, *, object: str, path: List[Union[str, slice]]):
+    def format_object_path(cls, object     , path                         ):
         return OrderedDict([
             ('object', object),
             ('path', path),
@@ -277,11 +275,11 @@ class CompactibleObject:
       - name
     """
 
-    def is_eligible_for_compaction(self) -> bool:
+    def is_eligible_for_compaction(self)        :
         """Whether this object could be represented on one line"""
         return False
 
-    def get_literal_type(self) -> Type:
+    def get_literal_type(self)        :
         """Return the type of literal this object is represented as
 
         By default, this returns the first non-CompactibleObject base class in
@@ -310,13 +308,13 @@ class CompactibleSet(CompactibleObject, set):
     pass
 
 
-class ObjectTypeSet(CompactibleSet, Set[str]):
-    def is_eligible_for_compaction(self) -> bool:
+class ObjectTypeSet(CompactibleSet, set):
+    def is_eligible_for_compaction(self)        :
         return len(self) == 1
 
 
 class ObjectPath(CompactibleList):
-    def is_eligible_for_compaction(self) -> bool:
+    def is_eligible_for_compaction(self)        :
         return len(self) == 1
 
 
@@ -363,8 +361,8 @@ class PatternTreeVisitor(STIXPatternVisitor):
     """
 
     def visitPattern(self,
-                     ctx: STIXPatternParser.PatternContext,
-                     ) -> PatternTree:
+                     ctx                                  ,
+                     )               :
         """Convert the root node, Pattern, into a PatternTree"""
         return self.emitPattern(ctx)
 
@@ -389,19 +387,19 @@ class PatternTreeVisitor(STIXPatternVisitor):
     # parent symbols into PatternTree form, simply storing the join operator's
     # text in the PatternTree to differentiate each symbol type.
     #
-    def visitObservationExpressions(self, ctx: STIXPatternParser.ObservationExpressionsContext):
+    def visitObservationExpressions(self, ctx                                                 ):
         """Convert <obs_expr> FOLLOWEDBY <obs_expr2> into PatternTree form"""
         return self.emitCompositeObservation(ctx)
 
-    def visitObservationExpressionOr(self, ctx: STIXPatternParser.ObservationExpressionOrContext):
+    def visitObservationExpressionOr(self, ctx                                                  ):
         """Convert <obs_expr> OR <obs_expr2> into PatternTree form"""
         return self.emitCompositeObservation(ctx)
 
-    def visitObservationExpressionAnd(self, ctx: STIXPatternParser.ObservationExpressionAndContext):
+    def visitObservationExpressionAnd(self, ctx                                                   ):
         """Convert <obs_expr> AND <obs_expr2> into PatternTree form"""
         return self.emitCompositeObservation(ctx)
 
-    def visitObservationExpressionCompound(self, ctx: STIXPatternParser.ObservationExpressionCompoundContext):
+    def visitObservationExpressionCompound(self, ctx                                                        ):
         """Ditch parens around an observation expression"""
         lparen, expr, rparen = ctx.getChildren()
         return self.visit(expr)
@@ -419,7 +417,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
     # inspired the terms used in PatternTree parsing for other classes of
     # symbols (e.g. simple comparison, composite comparison).
     #
-    def visitObservationExpressionSimple(self, ctx: STIXPatternParser.ObservationExpressionSimpleContext):
+    def visitObservationExpressionSimple(self, ctx                                                      ):
         return self.emitSimpleObservation(ctx)
 
     ##########################
@@ -436,16 +434,16 @@ class PatternTreeVisitor(STIXPatternVisitor):
     # its PatternTree form. The qualifiers are converted to PatternTree form
     # in the overridden visit<QualifierName>Qualifier methods.
     #
-    def visitObservationExpressionStartStop(self, ctx: STIXPatternParser.ObservationExpressionStartStopContext):
+    def visitObservationExpressionStartStop(self, ctx                                                         ):
         return self.emitObservationQualifier(ctx)
 
-    def visitObservationExpressionWithin(self, ctx: STIXPatternParser.ObservationExpressionWithinContext):
+    def visitObservationExpressionWithin(self, ctx                                                      ):
         return self.emitObservationQualifier(ctx)
 
-    def visitObservationExpressionRepeated(self, ctx: STIXPatternParser.ObservationExpressionRepeatedContext):
+    def visitObservationExpressionRepeated(self, ctx                                                        ):
         return self.emitObservationQualifier(ctx)
 
-    def visitStartStopQualifier(self, ctx: STIXPatternParser.StartStopQualifierContext):
+    def visitStartStopQualifier(self, ctx                                             ):
         """Convert <expr> START <start_dt> STOP <stop_dt> qualifier into PatternTree form
 
         See PatternTree.format_start_stop_qualifier for returned structure
@@ -456,7 +454,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
             stop=self.visit(stop_dt),
         )
 
-    def visitWithinQualifier(self, ctx: STIXPatternParser.WithinQualifierContext):
+    def visitWithinQualifier(self, ctx                                          ):
         """Convert <expr> WITHIN <number> SECONDS qualifier into PatternTree form
         """
         within, number, unit = ctx.getChildren()
@@ -465,7 +463,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
             unit=self.visit(unit),
         )
 
-    def visitRepeatedQualifier(self, ctx:STIXPatternParser.RepeatedQualifierContext):
+    def visitRepeatedQualifier(self, ctx                                           ):
         repeats, number, times = ctx.getChildren()
         return PatternTree.format_repeats_qualifier(
             value=self.visit(number),
@@ -491,10 +489,10 @@ class PatternTreeVisitor(STIXPatternVisitor):
     # which is able to determine which join operator is used by reading the
     # symbol type.
     #
-    def visitComparisonExpression(self, ctx: STIXPatternParser.ComparisonExpressionContext):
+    def visitComparisonExpression(self, ctx                                               ):
         return self.emitCompositeComparison(ctx)
 
-    def visitComparisonExpressionAnd(self, ctx: STIXPatternParser.ComparisonExpressionAndContext):
+    def visitComparisonExpressionAnd(self, ctx                                                  ):
         return self.emitCompositeComparison(ctx)
 
     ######################
@@ -514,28 +512,28 @@ class PatternTreeVisitor(STIXPatternVisitor):
     # operator to differentiate each symbol type — each propTest symbol has the
     # same <NOT>? <LHS> <OP> <RHS> syntax.
     #
-    def visitPropTestEqual(self, ctx: STIXPatternParser.PropTestEqualContext):
+    def visitPropTestEqual(self, ctx                                        ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestOrder(self, ctx: STIXPatternParser.PropTestOrderContext):
+    def visitPropTestOrder(self, ctx                                        ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestSet(self, ctx: STIXPatternParser.PropTestSetContext):
+    def visitPropTestSet(self, ctx                                      ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestLike(self, ctx: STIXPatternParser.PropTestLikeContext):
+    def visitPropTestLike(self, ctx                                       ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestRegex(self, ctx: STIXPatternParser.PropTestRegexContext):
+    def visitPropTestRegex(self, ctx                                        ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestIsSubset(self, ctx: STIXPatternParser.PropTestIsSubsetContext):
+    def visitPropTestIsSubset(self, ctx                                           ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestIsSuperset(self, ctx: STIXPatternParser.PropTestIsSupersetContext):
+    def visitPropTestIsSuperset(self, ctx                                             ):
         return self.emitSimpleComparison(ctx)
 
-    def visitPropTestParen(self, ctx: STIXPatternParser.PropTestParenContext):
+    def visitPropTestParen(self, ctx                                        ):
         """Strips a parenthesized cmp expr and processes only its body
 
         Conversion is deferred to other visitPropTestXYZ methods (dispatch is
@@ -550,7 +548,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
         lparen, expr, rparen = ctx.getChildren()
         return self.visit(expr)
 
-    def visitObjectPath(self, ctx: STIXPatternParser.ObjectPathContext):
+    def visitObjectPath(self, ctx                                     ):
         """Split an object path into component "object" and "path" parts
 
         Example (pseudo-code):
@@ -562,7 +560,9 @@ class PatternTreeVisitor(STIXPatternVisitor):
 
         """
         # NOTE: path will contain 0 or 1 symbols
-        object_type, colon, property, *path = ctx.getChildren()
+        children = list(ctx.getChildren())
+        object_type, colon, property = children[:3]
+        path = children[3:]
         assert not path or len(path) == 1
 
         # This will store the converted object path symbols, flattened from
@@ -575,7 +575,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
         # If there is only one component (two in total), path[0] will be a
         # single symbol, requiring no flattening.
         if path:
-            path_component: STIXPatternParser.ObjectPathComponentContext = path[0]
+            path_component = path[0]
             if isinstance(path_component, STIXPatternParser.PathStepContext):
                 full_path += self.visit(path_component)
             else:
@@ -587,8 +587,8 @@ class PatternTreeVisitor(STIXPatternVisitor):
         )
 
     def visitPathStep(self,
-                      ctx: STIXPatternParser.PathStepContext,
-                      ) -> List[Union[ConvertedStixLiteral, slice]]:
+                      ctx                                   ,
+                      )                                            :
         """Flatten object path steps into list of literals or slices (for [1] notation)
 
         Example (pseudo-code):
@@ -602,7 +602,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
             for child in children
         ]
 
-    def visitIndexPathStep(self, ctx: STIXPatternParser.IndexPathStepContext) -> slice:
+    def visitIndexPathStep(self, ctx                                        )         :
         """Convert array/object-prop notation into a Python slice
 
         NOTE: the special [*] case (for "match ANY items in the array/object")
@@ -611,7 +611,7 @@ class PatternTreeVisitor(STIXPatternVisitor):
         lbracket, index, rbracket = ctx.getChildren()
         return slice(self.emitLiteral(index))
 
-    def visitFirstPathComponent(self, ctx: STIXPatternParser.FirstPathComponentContext) -> ConvertedStixLiteral:
+    def visitFirstPathComponent(self, ctx                                             )                        :
         """Convert the first step of an object path into string form
 
         BACKGROUND: (I speculate) the reason for a separate, special path
@@ -621,20 +621,20 @@ class PatternTreeVisitor(STIXPatternVisitor):
         """
         return self.emitLiteral(ctx.getChild(0))
 
-    def visitKeyPathStep(self, ctx: STIXPatternParser.KeyPathStepContext) -> ConvertedStixLiteral:
+    def visitKeyPathStep(self, ctx                                      )                        :
         """Convert a regular property path step (past the first) into a string
         """
         dot, key = ctx.getChildren()
         return self.emitLiteral(key)
 
-    def visitTerminal(self, node) -> ConvertedStixLiteral:
+    def visitTerminal(self, node)                        :
         """Convert non-symbol nodes to Python literals
 
         Non-symbol nodes include string literals, names, etc
         """
         return self.emitLiteral(node)
 
-    def emitPattern(self, ctx: STIXPatternParser.PatternContext):
+    def emitPattern(self, ctx                                  ):
         """Convert a Pattern symbol into PatternTree form
 
         See PatternTree.format_pattern for returned structure
@@ -645,10 +645,10 @@ class PatternTreeVisitor(STIXPatternVisitor):
         )
 
     def emitCompositeObservation(self,
-                                 ctx: Union[STIXPatternParser.ObservationExpressionsContext,
-                                            STIXPatternParser.ObservationExpressionOrContext,
-                                            STIXPatternParser.ObservationExpressionAndContext],
-                                 ) -> dict:
+                                 ctx
+
+                                 ,
+                                 )        :
         """Convert a group of joined observations into PatternTree form
 
         A "composite observation" is any observations joined by FOLLOWEDBY, OR,
@@ -665,15 +665,15 @@ class PatternTreeVisitor(STIXPatternVisitor):
         return PatternTree.format_composite_observation(
             join=op.getText().upper(),
             qualifiers=None,  # if there are any qualifiers, they will be added
-                              # by the parent node (which contains this
-                              # expression and the qualifier)
+            # by the parent node (which contains this
+            # expression and the qualifier)
             expressions=[
-               self.visit(child)
-               for child in children
-           ],
+                self.visit(child)
+                for child in children
+            ],
         )
 
-    def emitSimpleObservation(self, ctx: STIXPatternParser.ObservationExpressionSimpleContext):
+    def emitSimpleObservation(self, ctx                                                      ):
         """Convert a non-grouped observation to its PatternTree form
 
         A "simple observation" is a whole observation and its child
@@ -700,9 +700,9 @@ class PatternTreeVisitor(STIXPatternVisitor):
             expressions=expressions,
         )
 
-    def emitObservationQualifier(self, ctx: Union[STIXPatternParser.ObservationExpressionStartStopContext,
-                                                  STIXPatternParser.ObservationExpressionWithinContext,
-                                                  STIXPatternParser.ObservationExpressionRepeatedContext]):
+    def emitObservationQualifier(self, ctx
+
+                                 ):
         """Add an observation expression's qualifiers in its PatternTree form
 
         The STIX2 Pattern grammar places the symbol linking an observation
@@ -718,14 +718,15 @@ class PatternTreeVisitor(STIXPatternVisitor):
               and PatternTree.format_simple_observation for returned structure
         """
         # NOTE: qualifiers will have 1 or more qualifier symbols
-        expr, *qualifiers = flatten_left(ctx, [
+        flattened = flatten_left(ctx, [
             STIXPatternParser.ObservationExpressionStartStopContext,
             STIXPatternParser.ObservationExpressionWithinContext,
             STIXPatternParser.ObservationExpressionRepeatedContext,
         ])
+        expr, qualifiers = flattened[0], flattened[1:]
 
         # node will either be {"expression": body} or {"observation": body}
-        node: dict = self.visit(expr)
+        node       = self.visit(expr)
         assert isinstance(node, dict) and len(node) == 1  # sanity check
 
         # body will contain the meat of the observation/expression, which we
@@ -739,8 +740,8 @@ class PatternTreeVisitor(STIXPatternVisitor):
         return node
 
 
-    def emitCompositeComparison(self, ctx: Union[STIXPatternParser.ComparisonExpressionContext,
-                                                 STIXPatternParser.ComparisonExpressionAndContext]):
+    def emitCompositeComparison(self, ctx
+                                ):
         """Convert a group of joined comparisons into PatternTree form
 
         See PatternTree.format_composite_comparison for returned structure.
@@ -754,35 +755,43 @@ class PatternTreeVisitor(STIXPatternVisitor):
         return PatternTree.format_composite_comparison(
             join=op.getText().upper(),
             expressions=[
-               self.visit(child)
-               for child in children
-           ],
+                self.visit(child)
+                for child in children
+            ],
         )
 
-    def emitSimpleComparison(self, ctx: STIXPatternParser.PropTestContext) -> dict:
+    def emitSimpleComparison(self, ctx                                   )        :
         """Convert a comparison (AKA propTest) into PatternTree form
 
         See PatternTree.format_simple_comparison for returned structure.
         """
-        lhs, *nots, op, rhs = ctx.getChildren()
+        children = list(ctx.getChildren())
+        lhs = children[0]
+        nots = children[1:-2]
+        op = children[-2]
+        rhs = children[-1]
 
-        return PatternTree.format_simple_comparison(
-            **self.visit(lhs),
+        params = dict(self.visit(lhs))
+        params.update(
             negated=True if nots else None,  # using None makes for an uncluttered yaml tree,
-                                             # where the field will just be empty -- we only
-                                             # need to see the value if it's True.
+            # where the field will just be empty -- we only
+            # need to see the value if it's True.
             operator=op.getText(),
             value=self.visit(rhs),
         )
 
-    def emitLiteral(self, literal) -> ConvertedStixLiteral:
+        return PatternTree.format_simple_comparison(
+            **params
+        )
+
+    def emitLiteral(self, literal)                        :
         """Convert terminal node or identifier-like sym into Python primitives
         """
         text = literal.getText()
         symbol_type = literal.getSymbol().type
         return coerce_literal(text, symbol_type)
 
-    def findObjectTypes(self, comparison_expressions: List[dict]) -> ObjectTypeSet:
+    def findObjectTypes(self, comparison_expressions            )                 :
         """Find the object types used by the given comparison expressions
         """
         encountered_types = ObjectTypeSet()
@@ -802,12 +811,11 @@ class PatternTreeVisitor(STIXPatternVisitor):
         return encountered_types
 
 
-T = TypeVar('T', bound=ParserRuleContext)
 
 
-def flatten_left(ctx: ParserRuleContext,
-                 rules: Iterable[Type[T]]=None,
-                 ) -> List[T]:
+def flatten_left(ctx                   ,
+                 rules                   =None,
+                 )           :
     r"""Flatten left-associative symbols
 
     Composite expressions joined with AND/OR/etc are left-associative
@@ -840,7 +848,8 @@ def flatten_left(ctx: ParserRuleContext,
     flattened = []
     last_lhs = ctx
     while True:
-        lhs, *others = last_lhs.getChildren()
+        children = list(last_lhs.getChildren())
+        lhs, others = children[0], children[1:]
         if others:
             flattened.append(others[-1])
 
@@ -858,7 +867,7 @@ def flatten_left(ctx: ParserRuleContext,
 
 
 # NOTE: this was lifted from oasis-open/cti-pattern-matcher
-def convert_stix_datetime(timestamp_str: str, ignore_case: bool=False) -> datetime:
+def convert_stix_datetime(timestamp_str     , ignore_case      =False)            :
     """
     Convert a timestamp string from a pattern to a datetime.datetime object.
     If conversion fails, raises a ValueError.
@@ -868,7 +877,7 @@ def convert_stix_datetime(timestamp_str: str, ignore_case: bool=False) -> dateti
     # case-sensitivity for timestamp literals inside patterns and JSON
     # (for the "T" and "Z" chars).  So check case first.
     if not ignore_case and any(c.islower() for c in timestamp_str):
-        raise ValueError(f'Invalid timestamp format (require upper case): {timestamp_str}')
+        raise ValueError('Invalid timestamp format (require upper case): {}'.format(timestamp_str))
 
     # Can't create a pattern with an optional part... so use two patterns
     if '.' in timestamp_str:
@@ -882,7 +891,7 @@ def convert_stix_datetime(timestamp_str: str, ignore_case: bool=False) -> dateti
     return dt
 
 
-def is_utc(o: Union[tzinfo, datetime, date]) -> bool:
+def is_utc(o                               )        :
     """Return whether the timezone or date/time object is (in) UTC
     """
     if isinstance(o, (datetime, date)):
@@ -908,9 +917,9 @@ PRIMITIVE_COERCERS = {
 }
 
 
-def coerce_literal(text: str,
-                   symbol_type: int,
-                   ) -> ConvertedStixLiteral:
+def coerce_literal(text     ,
+                   symbol_type     ,
+                   )                        :
     """Convert a parsed literal symbol into a Python primitive
 
     NOTE: If the literal type is not recognized, the original text is returned.

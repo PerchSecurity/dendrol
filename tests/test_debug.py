@@ -1,5 +1,5 @@
+from __future__ import unicode_literals, print_function, absolute_import
 import re
-from typing import Tuple, Iterable
 
 import pytest
 
@@ -8,7 +8,7 @@ from dendrol import PatternTree, load_tree
 
 # NOTE: whitespace is important here!
 #       these structures will be compared char-by-char, so mind trailing spaces.
-TESTS = '''
+TESTS = u'''
 
 name: simple
 pattern:
@@ -117,30 +117,30 @@ pattern:
 '''
 
 
-RGX_TEST_NAME = re.compile(r'^name: (\S+)\s+', re.MULTILINE)
+RGX_TEST_NAME = re.compile(ur'^name: (\S+)\s+', re.MULTILINE)
 
 
-def get_tests() -> Iterable[Tuple[str, str, PatternTree]]:
-    docs = TESTS.split('\n---\n')
+def get_tests():
+    docs = TESTS.split(u'\n---\n')
     for i, doc in enumerate(docs):
         doc = doc.strip()
 
         name_match = RGX_TEST_NAME.match(doc)
         if name_match:
             name = name_match.group(1)
-            doc = RGX_TEST_NAME.sub('', doc)
+            doc = RGX_TEST_NAME.sub(u'', doc)
         else:
-            name = f'doc {i}'
+            name = u'doc {}'.format(i)
 
         tree = load_tree(doc)
         yield name, doc, tree
 
 
-@pytest.mark.parametrize('source,tree', [
+@pytest.mark.parametrize(u'source,tree', [
     pytest.param(source, tree, id=name)
     for name, source, tree in get_tests()
 ])
-def test_yaml_repr(source: str, tree: PatternTree):
+def test_yaml_repr(source, tree):
     expected = source
     actual = tree.serialize().strip()
     assert expected == actual

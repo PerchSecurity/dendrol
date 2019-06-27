@@ -1,4 +1,4 @@
-from typing import Any
+from __future__ import unicode_literals, print_function, division, absolute_import
 
 import antlr4
 import antlr4.error.Errors
@@ -18,7 +18,11 @@ class ParserErrorListener(antlr4.error.ErrorListener.ErrorListener):
     Simple error listener which just remembers the last error message received.
     """
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        self.error_message = f'{line}:{column}: {msg}'
+        self.error_message = '{line}:{column}: {msg}'.format(
+            line=line,
+            column=column,
+            msg=msg,
+        )
 
 
 class ParseException(Exception):
@@ -26,7 +30,7 @@ class ParseException(Exception):
     pass
 
 
-def parse(pattern_str: str, trace: bool = False) -> STIXPatternParser.PatternContext:
+def parse(pattern_str, trace = False):
     """
     Parses the given pattern and returns the antlr parse tree.
 
@@ -92,12 +96,11 @@ def parse(pattern_str: str, trace: bool = False) -> STIXPatternParser.PatternCon
         return tree
 
 
-class Pattern:
+class Pattern(object):
     """A parsed pattern expression, with traversal and representation methods
     """
-    tree: STIXPatternParser.PatternContext
 
-    def __init__(self, pattern_str: str):
+    def __init__(self, pattern_str):
         """
         Compile a pattern.
 
@@ -106,12 +109,12 @@ class Pattern:
         """
         self.tree = parse(pattern_str)
 
-    def walk(self, listener: STIXPatternListener):
+    def walk(self, listener):
         """Walk all nodes of the parse tree
         """
         antlr4.ParseTreeWalker.DEFAULT.walk(listener, self.tree)
 
-    def visit(self, visitor: STIXPatternVisitor) -> Any:
+    def visit(self, visitor):
         """Visit nodes in the parse tree and return a value
 
         Unlike the listener pattern, which enumerates all nodes and gossips to
@@ -120,7 +123,7 @@ class Pattern:
         """
         return self.tree.accept(visitor)
 
-    def to_dict_tree(self) -> PatternTree:
+    def to_dict_tree(self):
         """Convert the parse tree to a simplified dict tree
 
         See dendrol.transform.DictVisitor for more info

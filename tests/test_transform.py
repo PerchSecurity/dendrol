@@ -1,4 +1,4 @@
-from typing import Iterable, Tuple
+from __future__ import unicode_literals, print_function, absolute_import
 
 import pytest
 import yaml
@@ -7,7 +7,7 @@ from dendrol import Pattern, PatternTree
 from dendrol.debug import PatternTreeLoader
 
 
-TESTS = yaml.load('''
+TESTS = yaml.load(u'''
 
 simple-comparison:
   expression: >
@@ -307,18 +307,18 @@ stix2-patterning-example:
 ''', Loader=PatternTreeLoader)
 
 
-def get_tests() -> Iterable[Tuple[str, str, dict]]:
+def get_tests():
     for name, test in TESTS.items():
-        expression = test['expression']
+        expression = test[u'expression']
 
-        pattern = test['pattern']
-        tree = {'pattern': pattern}
+        pattern = test[u'pattern']
+        tree = {u'pattern': pattern}
         expected = PatternTree.from_dict(tree)
 
         yield name, expression, expected
 
 
-@pytest.mark.parametrize('input,expected', [
+@pytest.mark.parametrize(u'input,expected', [
     pytest.param(expression, expected, id=name)
     for name, expression, expected in get_tests()
 ])

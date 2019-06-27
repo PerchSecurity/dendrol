@@ -1,12 +1,21 @@
 #!/usr/bin/env python
+from __future__ import division
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import absolute_import
 import subprocess
 import sys
 from pathlib import Path
-from typing import Iterable, Union
 
 import click
 import requests
 from tqdm import tqdm
+
+try:
+    from subprocess import DEVNULL # py3k
+except ImportError:
+    import os
+    DEVNULL = open(os.devnull, 'wb')
 
 
 @click.command()
@@ -19,7 +28,7 @@ from tqdm import tqdm
               help='Force the ANTLR .jar to be downloaded, even if it already exists')
 @click.option('--progress',
               default=True)
-def compile_stix_grammar(output, force_antlr_download: bool, progress: bool):
+def compile_stix_grammar(output, force_antlr_download, progress):
     output = Path(output)
 
     if not is_java_installed():
@@ -36,22 +45,22 @@ def compile_stix_grammar(output, force_antlr_download: bool, progress: bool):
 
     elif not is_antlr_jar_saved(output):
         will_download_antlr = True
-        click.echo(f'ANTLR .jar not found at: {jar_path}', color='orange')
+        click.echo('ANTLR .jar not found at: {jar_path}'.format(jar_path=jar_path), color='orange')
 
     if will_download_antlr:
-        click.echo(f'Downloading ANTLR .jar to: {jar_path}')
+        click.echo('Downloading ANTLR .jar to: {jar_path}'.format(jar_path=jar_path))
         save_antlr_jar(directory=output, display_progress=progress)
 
     compile_grammar(output_dir=output)
-    click.echo(f'Successfully compiled grammar to: {output}', color='green')
+    click.echo('Successfully compiled grammar to: {output}'.format(output=output), color='green')
 
 
-def is_java_installed() -> bool:
+def is_java_installed():
     """Simple check to detect existence of Java."""
     try:
         retcode = subprocess.check_call(
             ['java', '-version'],
-            stderr=subprocess.DEVNULL,
+            stderr=DEVNULL,
         )
     except (subprocess.CalledProcessError, OSError):
         return False
@@ -59,7 +68,7 @@ def is_java_installed() -> bool:
         return retcode == 0
 
 
-def compile_grammar(output_dir: Path = None) -> bool:
+def compile_grammar(output_dir = None):
     """Generate lexer, parser, listener, and visitor classes for the STIX grammar
 
     If output_dir is not passed, the directory of this module is used.
@@ -67,23 +76,23 @@ def compile_grammar(output_dir: Path = None) -> bool:
     jar_path = get_antlr_jar_path(output_dir)
 
     retcode = subprocess.check_call(
-        cwd=output_dir,
+        cwd=str(output_dir),
         env={'CLASSPATH': str(jar_path)},
         args=[
             'java',
             'org.antlr.v4.Tool',
-            '-Dlanguage=Python3',
+            '-Dlanguage=Python2',
             '-visitor',
             '-listener',
             '-package', get_antlr_jar_path.__module__,
-            '-o', output_dir,
+            '-o', str(output_dir),
             'STIXPattern.g4',
         ],
     )
     return retcode == 0
 
 
-def save_antlr_jar(directory: Path, display_progress=False) -> Path:
+def save_antlr_jar(directory, display_progress=False):
     """Download and save the ANTLR .jar
     """
     path = get_antlr_jar_path(directory)
@@ -119,7 +128,7 @@ def _iter_with_progress(pbar):
     pbar.close()
 
 
-def stream_antlr_jar(chunk_size=1024) -> Iterable[bytes]:
+def stream_antlr_jar(chunk_size=1024):
     """Retrieve the ANTLR .jar in chunks from the internet
     """
     url = get_antlr_jar_download_url()
@@ -130,15 +139,15 @@ def stream_antlr_jar(chunk_size=1024) -> Iterable[bytes]:
         yield chunk
 
 
-def get_antlr_jar_path(directory: Path) -> Path:
+def get_antlr_jar_path(directory):
     return directory / 'antlr-4.7.1-complete.jar'
 
 
-def is_antlr_jar_saved(directory: Path) -> bool:
+def is_antlr_jar_saved(directory):
     return get_antlr_jar_path(directory).exists()
 
 
-def get_antlr_jar_download_url() -> str:
+def get_antlr_jar_download_url():
     return 'https://www.antlr.org/download/antlr-4.7.1-complete.jar'
 
 
