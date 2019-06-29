@@ -10,157 +10,157 @@ else:
 class STIXPatternVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by STIXPatternParser#pattern.
-    def visitPattern(self, ctx:STIXPatternParser.PatternContext):
+    def visitPattern(self, ctx                                 ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressions.
-    def visitObservationExpressions(self, ctx:STIXPatternParser.ObservationExpressionsContext):
+    def visitObservationExpressions(self, ctx                                                ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionOr.
-    def visitObservationExpressionOr(self, ctx:STIXPatternParser.ObservationExpressionOrContext):
+    def visitObservationExpressionOr(self, ctx                                                 ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionAnd.
-    def visitObservationExpressionAnd(self, ctx:STIXPatternParser.ObservationExpressionAndContext):
+    def visitObservationExpressionAnd(self, ctx                                                  ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionRepeated.
-    def visitObservationExpressionRepeated(self, ctx:STIXPatternParser.ObservationExpressionRepeatedContext):
+    def visitObservationExpressionRepeated(self, ctx                                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionSimple.
-    def visitObservationExpressionSimple(self, ctx:STIXPatternParser.ObservationExpressionSimpleContext):
+    def visitObservationExpressionSimple(self, ctx                                                     ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionCompound.
-    def visitObservationExpressionCompound(self, ctx:STIXPatternParser.ObservationExpressionCompoundContext):
+    def visitObservationExpressionCompound(self, ctx                                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionWithin.
-    def visitObservationExpressionWithin(self, ctx:STIXPatternParser.ObservationExpressionWithinContext):
+    def visitObservationExpressionWithin(self, ctx                                                     ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#observationExpressionStartStop.
-    def visitObservationExpressionStartStop(self, ctx:STIXPatternParser.ObservationExpressionStartStopContext):
+    def visitObservationExpressionStartStop(self, ctx                                                        ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#comparisonExpression.
-    def visitComparisonExpression(self, ctx:STIXPatternParser.ComparisonExpressionContext):
+    def visitComparisonExpression(self, ctx                                              ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#comparisonExpressionAnd.
-    def visitComparisonExpressionAnd(self, ctx:STIXPatternParser.ComparisonExpressionAndContext):
+    def visitComparisonExpressionAnd(self, ctx                                                 ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestEqual.
-    def visitPropTestEqual(self, ctx:STIXPatternParser.PropTestEqualContext):
+    def visitPropTestEqual(self, ctx                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestOrder.
-    def visitPropTestOrder(self, ctx:STIXPatternParser.PropTestOrderContext):
+    def visitPropTestOrder(self, ctx                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestSet.
-    def visitPropTestSet(self, ctx:STIXPatternParser.PropTestSetContext):
+    def visitPropTestSet(self, ctx                                     ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestLike.
-    def visitPropTestLike(self, ctx:STIXPatternParser.PropTestLikeContext):
+    def visitPropTestLike(self, ctx                                      ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestRegex.
-    def visitPropTestRegex(self, ctx:STIXPatternParser.PropTestRegexContext):
+    def visitPropTestRegex(self, ctx                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestIsSubset.
-    def visitPropTestIsSubset(self, ctx:STIXPatternParser.PropTestIsSubsetContext):
+    def visitPropTestIsSubset(self, ctx                                          ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestIsSuperset.
-    def visitPropTestIsSuperset(self, ctx:STIXPatternParser.PropTestIsSupersetContext):
+    def visitPropTestIsSuperset(self, ctx                                            ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#propTestParen.
-    def visitPropTestParen(self, ctx:STIXPatternParser.PropTestParenContext):
+    def visitPropTestParen(self, ctx                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#startStopQualifier.
-    def visitStartStopQualifier(self, ctx:STIXPatternParser.StartStopQualifierContext):
+    def visitStartStopQualifier(self, ctx                                            ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#withinQualifier.
-    def visitWithinQualifier(self, ctx:STIXPatternParser.WithinQualifierContext):
+    def visitWithinQualifier(self, ctx                                         ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#repeatedQualifier.
-    def visitRepeatedQualifier(self, ctx:STIXPatternParser.RepeatedQualifierContext):
+    def visitRepeatedQualifier(self, ctx                                           ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#objectPath.
-    def visitObjectPath(self, ctx:STIXPatternParser.ObjectPathContext):
+    def visitObjectPath(self, ctx                                    ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#objectType.
-    def visitObjectType(self, ctx:STIXPatternParser.ObjectTypeContext):
+    def visitObjectType(self, ctx                                    ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#firstPathComponent.
-    def visitFirstPathComponent(self, ctx:STIXPatternParser.FirstPathComponentContext):
+    def visitFirstPathComponent(self, ctx                                            ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#indexPathStep.
-    def visitIndexPathStep(self, ctx:STIXPatternParser.IndexPathStepContext):
+    def visitIndexPathStep(self, ctx                                       ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#pathStep.
-    def visitPathStep(self, ctx:STIXPatternParser.PathStepContext):
+    def visitPathStep(self, ctx                                  ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#keyPathStep.
-    def visitKeyPathStep(self, ctx:STIXPatternParser.KeyPathStepContext):
+    def visitKeyPathStep(self, ctx                                     ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#setLiteral.
-    def visitSetLiteral(self, ctx:STIXPatternParser.SetLiteralContext):
+    def visitSetLiteral(self, ctx                                    ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#primitiveLiteral.
-    def visitPrimitiveLiteral(self, ctx:STIXPatternParser.PrimitiveLiteralContext):
+    def visitPrimitiveLiteral(self, ctx                                          ):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by STIXPatternParser#orderableLiteral.
-    def visitOrderableLiteral(self, ctx:STIXPatternParser.OrderableLiteralContext):
+    def visitOrderableLiteral(self, ctx                                          ):
         return self.visitChildren(ctx)
 
 

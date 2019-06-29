@@ -20,7 +20,7 @@ from ww import f
               help='Force the ANTLR .jar to be downloaded, even if it already exists')
 @click.option('--progress',
               default=True)
-def compile_stix_grammar(output, force_antlr_download: bool, progress: bool):
+def compile_stix_grammar(output, force_antlr_download      , progress      ):
     output = Path(output)
 
     if not is_java_installed():
@@ -47,7 +47,7 @@ def compile_stix_grammar(output, force_antlr_download: bool, progress: bool):
     click.echo(f('Successfully compiled grammar to: {output}'), color='green')
 
 
-def is_java_installed() -> bool:
+def is_java_installed()        :
     """Simple check to detect existence of Java."""
     try:
         retcode = subprocess.check_call(
@@ -60,7 +60,7 @@ def is_java_installed() -> bool:
         return retcode == 0
 
 
-def compile_grammar(output_dir: Path = None) -> bool:
+def compile_grammar(output_dir       = None)        :
     """Generate lexer, parser, listener, and visitor classes for the STIX grammar
 
     If output_dir is not passed, the directory of this module is used.
@@ -84,7 +84,7 @@ def compile_grammar(output_dir: Path = None) -> bool:
     return retcode == 0
 
 
-def save_antlr_jar(directory: Path, display_progress=False) -> Path:
+def save_antlr_jar(directory      , display_progress=False)        :
     """Download and save the ANTLR .jar
     """
     path = get_antlr_jar_path(directory)
@@ -120,7 +120,7 @@ def _iter_with_progress(pbar):
     pbar.close()
 
 
-def stream_antlr_jar(chunk_size=1024) -> Iterable[bytes]:
+def stream_antlr_jar(chunk_size=1024)                   :
     """Retrieve the ANTLR .jar in chunks from the internet
     """
     url = get_antlr_jar_download_url()
@@ -131,15 +131,15 @@ def stream_antlr_jar(chunk_size=1024) -> Iterable[bytes]:
         yield chunk
 
 
-def get_antlr_jar_path(directory: Path) -> Path:
+def get_antlr_jar_path(directory      )        :
     return directory / 'antlr-4.7.1-complete.jar'
 
 
-def is_antlr_jar_saved(directory: Path) -> bool:
+def is_antlr_jar_saved(directory      )        :
     return get_antlr_jar_path(directory).exists()
 
 
-def get_antlr_jar_download_url() -> str:
+def get_antlr_jar_download_url()       :
     return 'https://www.antlr.org/download/antlr-4.7.1-complete.jar'
 
 

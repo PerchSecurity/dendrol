@@ -307,7 +307,7 @@ stix2-patterning-example:
 ''', Loader=PatternTreeLoader)
 
 
-def get_tests() -> Iterable[Tuple[str, str, dict]]:
+def get_tests()                                   :
     for name, test in TESTS.items():
         expression = test['expression']
 

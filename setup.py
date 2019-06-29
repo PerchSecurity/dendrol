@@ -10,11 +10,11 @@ README_PATH = PROJECT_DIR / 'README.md'
 VERSION_PATH = PACKAGE_DIR / 'version.py'
 
 
-def get_readme() -> str:
+def get_readme()       :
     return README_PATH.read_text()
 
 
-def get_version() -> str:
+def get_version()       :
     source = VERSION_PATH.read_text()
 
     context = {}

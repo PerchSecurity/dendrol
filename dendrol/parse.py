@@ -27,7 +27,7 @@ class ParseException(Exception):
     pass
 
 
-def parse(pattern_str: str, trace: bool = False) -> STIXPatternParser.PatternContext:
+def parse(pattern_str     , trace       = False)                                    :
     """
     Parses the given pattern and returns the antlr parse tree.
 
@@ -96,9 +96,9 @@ def parse(pattern_str: str, trace: bool = False) -> STIXPatternParser.PatternCon
 class Pattern:
     """A parsed pattern expression, with traversal and representation methods
     """
-    tree: STIXPatternParser.PatternContext
+    #ree: STIXPatternParser.PatternContext
 
-    def __init__(self, pattern_str: str):
+    def __init__(self, pattern_str     ):
         """
         Compile a pattern.
 
@@ -107,12 +107,12 @@ class Pattern:
         """
         self.tree = parse(pattern_str)
 
-    def walk(self, listener: STIXPatternListener):
+    def walk(self, listener                     ):
         """Walk all nodes of the parse tree
         """
         antlr4.ParseTreeWalker.DEFAULT.walk(listener, self.tree)
 
-    def visit(self, visitor: STIXPatternVisitor) -> Any:
+    def visit(self, visitor                    )       :
         """Visit nodes in the parse tree and return a value
 
         Unlike the listener pattern, which enumerates all nodes and gossips to
@@ -121,7 +121,7 @@ class Pattern:
         """
         return self.tree.accept(visitor)
 
-    def to_dict_tree(self) -> PatternTree:
+    def to_dict_tree(self)               :
         """Convert the parse tree to a simplified dict tree
 
         See dendrol.transform.DictVisitor for more info

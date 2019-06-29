@@ -333,7 +333,7 @@ class STIXPatternLexer(Lexer):
 
     grammarFileName = "STIXPattern.g4"
 
-    def __init__(self, input=None, output:TextIO = sys.stdout):
+    def __init__(self, input=None, output        = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.7.1")
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())

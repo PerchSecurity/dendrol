@@ -220,7 +220,7 @@ class STIXPatternParser ( Parser ):
     LINE_COMMENT=52
     InvalidCharacter=53
 
-    def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
+    def __init__(self, input            , output        = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.7.1")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
@@ -230,7 +230,7 @@ class STIXPatternParser ( Parser ):
 
     class PatternContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -244,15 +244,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_pattern
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPattern" ):
                 listener.enterPattern(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPattern" ):
                 listener.exitPattern(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPattern" ):
                 return visitor.visitPattern(self)
             else:
@@ -281,7 +281,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionsContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -289,7 +289,7 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.ObservationExpressionOrContext,0)
 
 
-        def observationExpressions(self, i:int=None):
+        def observationExpressions(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ObservationExpressionsContext)
             else:
@@ -302,15 +302,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_observationExpressions
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressions" ):
                 listener.enterObservationExpressions(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressions" ):
                 listener.exitObservationExpressions(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressions" ):
                 return visitor.visitObservationExpressions(self)
             else:
@@ -318,7 +318,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def observationExpressions(self, _p:int=0):
+    def observationExpressions(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ObservationExpressionsContext(self, self._ctx, _parentState)
@@ -362,7 +362,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionOrContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -370,7 +370,7 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.ObservationExpressionAndContext,0)
 
 
-        def observationExpressionOr(self, i:int=None):
+        def observationExpressionOr(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ObservationExpressionOrContext)
             else:
@@ -383,15 +383,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_observationExpressionOr
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionOr" ):
                 listener.enterObservationExpressionOr(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionOr" ):
                 listener.exitObservationExpressionOr(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionOr" ):
                 return visitor.visitObservationExpressionOr(self)
             else:
@@ -399,7 +399,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def observationExpressionOr(self, _p:int=0):
+    def observationExpressionOr(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ObservationExpressionOrContext(self, self._ctx, _parentState)
@@ -443,7 +443,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionAndContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -451,7 +451,7 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.ObservationExpressionContext,0)
 
 
-        def observationExpressionAnd(self, i:int=None):
+        def observationExpressionAnd(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ObservationExpressionAndContext)
             else:
@@ -464,15 +464,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_observationExpressionAnd
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionAnd" ):
                 listener.enterObservationExpressionAnd(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionAnd" ):
                 listener.exitObservationExpressionAnd(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionAnd" ):
                 return visitor.visitObservationExpressionAnd(self)
             else:
@@ -480,7 +480,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def observationExpressionAnd(self, _p:int=0):
+    def observationExpressionAnd(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ObservationExpressionAndContext(self, self._ctx, _parentState)
@@ -524,7 +524,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -533,13 +533,13 @@ class STIXPatternParser ( Parser ):
             return STIXPatternParser.RULE_observationExpression
 
      
-        def copyFrom(self, ctx:ParserRuleContext):
+        def copyFrom(self, ctx                  ):
             super().copyFrom(ctx)
 
 
     class ObservationExpressionRepeatedContext(ObservationExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObservationExpressionContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObservationExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -550,15 +550,15 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.RepeatedQualifierContext,0)
 
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionRepeated" ):
                 listener.enterObservationExpressionRepeated(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionRepeated" ):
                 listener.exitObservationExpressionRepeated(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionRepeated" ):
                 return visitor.visitObservationExpressionRepeated(self)
             else:
@@ -567,7 +567,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionSimpleContext(ObservationExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObservationExpressionContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObservationExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -579,15 +579,15 @@ class STIXPatternParser ( Parser ):
         def RBRACK(self):
             return self.getToken(STIXPatternParser.RBRACK, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionSimple" ):
                 listener.enterObservationExpressionSimple(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionSimple" ):
                 listener.exitObservationExpressionSimple(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionSimple" ):
                 return visitor.visitObservationExpressionSimple(self)
             else:
@@ -596,7 +596,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionCompoundContext(ObservationExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObservationExpressionContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObservationExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -608,15 +608,15 @@ class STIXPatternParser ( Parser ):
         def RPAREN(self):
             return self.getToken(STIXPatternParser.RPAREN, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionCompound" ):
                 listener.enterObservationExpressionCompound(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionCompound" ):
                 listener.exitObservationExpressionCompound(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionCompound" ):
                 return visitor.visitObservationExpressionCompound(self)
             else:
@@ -625,7 +625,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionWithinContext(ObservationExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObservationExpressionContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObservationExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -636,15 +636,15 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.WithinQualifierContext,0)
 
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionWithin" ):
                 listener.enterObservationExpressionWithin(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionWithin" ):
                 listener.exitObservationExpressionWithin(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionWithin" ):
                 return visitor.visitObservationExpressionWithin(self)
             else:
@@ -653,7 +653,7 @@ class STIXPatternParser ( Parser ):
 
     class ObservationExpressionStartStopContext(ObservationExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObservationExpressionContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObservationExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -664,15 +664,15 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.StartStopQualifierContext,0)
 
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObservationExpressionStartStop" ):
                 listener.enterObservationExpressionStartStop(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObservationExpressionStartStop" ):
                 listener.exitObservationExpressionStartStop(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObservationExpressionStartStop" ):
                 return visitor.visitObservationExpressionStartStop(self)
             else:
@@ -680,7 +680,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def observationExpression(self, _p:int=0):
+    def observationExpression(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ObservationExpressionContext(self, self._ctx, _parentState)
@@ -778,7 +778,7 @@ class STIXPatternParser ( Parser ):
 
     class ComparisonExpressionContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -786,7 +786,7 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.ComparisonExpressionAndContext,0)
 
 
-        def comparisonExpression(self, i:int=None):
+        def comparisonExpression(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ComparisonExpressionContext)
             else:
@@ -799,15 +799,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_comparisonExpression
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterComparisonExpression" ):
                 listener.enterComparisonExpression(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitComparisonExpression" ):
                 listener.exitComparisonExpression(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitComparisonExpression" ):
                 return visitor.visitComparisonExpression(self)
             else:
@@ -815,7 +815,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def comparisonExpression(self, _p:int=0):
+    def comparisonExpression(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ComparisonExpressionContext(self, self._ctx, _parentState)
@@ -859,7 +859,7 @@ class STIXPatternParser ( Parser ):
 
     class ComparisonExpressionAndContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -867,7 +867,7 @@ class STIXPatternParser ( Parser ):
             return self.getTypedRuleContext(STIXPatternParser.PropTestContext,0)
 
 
-        def comparisonExpressionAnd(self, i:int=None):
+        def comparisonExpressionAnd(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ComparisonExpressionAndContext)
             else:
@@ -880,15 +880,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_comparisonExpressionAnd
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterComparisonExpressionAnd" ):
                 listener.enterComparisonExpressionAnd(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitComparisonExpressionAnd" ):
                 listener.exitComparisonExpressionAnd(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitComparisonExpressionAnd" ):
                 return visitor.visitComparisonExpressionAnd(self)
             else:
@@ -896,7 +896,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def comparisonExpressionAnd(self, _p:int=0):
+    def comparisonExpressionAnd(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ComparisonExpressionAndContext(self, self._ctx, _parentState)
@@ -940,7 +940,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -949,14 +949,14 @@ class STIXPatternParser ( Parser ):
             return STIXPatternParser.RULE_propTest
 
      
-        def copyFrom(self, ctx:ParserRuleContext):
+        def copyFrom(self, ctx                  ):
             super().copyFrom(ctx)
 
 
 
     class PropTestRegexContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -970,15 +970,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestRegex" ):
                 listener.enterPropTestRegex(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestRegex" ):
                 listener.exitPropTestRegex(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestRegex" ):
                 return visitor.visitPropTestRegex(self)
             else:
@@ -987,7 +987,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestOrderContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1008,15 +1008,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestOrder" ):
                 listener.enterPropTestOrder(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestOrder" ):
                 listener.exitPropTestOrder(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestOrder" ):
                 return visitor.visitPropTestOrder(self)
             else:
@@ -1025,7 +1025,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestLikeContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1039,15 +1039,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestLike" ):
                 listener.enterPropTestLike(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestLike" ):
                 listener.exitPropTestLike(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestLike" ):
                 return visitor.visitPropTestLike(self)
             else:
@@ -1056,7 +1056,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestEqualContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1073,15 +1073,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestEqual" ):
                 listener.enterPropTestEqual(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestEqual" ):
                 listener.exitPropTestEqual(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestEqual" ):
                 return visitor.visitPropTestEqual(self)
             else:
@@ -1090,7 +1090,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestSetContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1105,15 +1105,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestSet" ):
                 listener.enterPropTestSet(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestSet" ):
                 listener.exitPropTestSet(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestSet" ):
                 return visitor.visitPropTestSet(self)
             else:
@@ -1122,7 +1122,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestIsSubsetContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1136,15 +1136,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestIsSubset" ):
                 listener.enterPropTestIsSubset(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestIsSubset" ):
                 listener.exitPropTestIsSubset(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestIsSubset" ):
                 return visitor.visitPropTestIsSubset(self)
             else:
@@ -1153,7 +1153,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestParenContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1165,15 +1165,15 @@ class STIXPatternParser ( Parser ):
         def RPAREN(self):
             return self.getToken(STIXPatternParser.RPAREN, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestParen" ):
                 listener.enterPropTestParen(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestParen" ):
                 listener.exitPropTestParen(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestParen" ):
                 return visitor.visitPropTestParen(self)
             else:
@@ -1182,7 +1182,7 @@ class STIXPatternParser ( Parser ):
 
     class PropTestIsSupersetContext(PropTestContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.PropTestContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.PropTestContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1196,15 +1196,15 @@ class STIXPatternParser ( Parser ):
         def NOT(self):
             return self.getToken(STIXPatternParser.NOT, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPropTestIsSuperset" ):
                 listener.enterPropTestIsSuperset(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPropTestIsSuperset" ):
                 listener.exitPropTestIsSuperset(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPropTestIsSuperset" ):
                 return visitor.visitPropTestIsSuperset(self)
             else:
@@ -1386,14 +1386,14 @@ class STIXPatternParser ( Parser ):
 
     class StartStopQualifierContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def START(self):
             return self.getToken(STIXPatternParser.START, 0)
 
-        def TimestampLiteral(self, i:int=None):
+        def TimestampLiteral(self, i    =None):
             if i is None:
                 return self.getTokens(STIXPatternParser.TimestampLiteral)
             else:
@@ -1405,15 +1405,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_startStopQualifier
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterStartStopQualifier" ):
                 listener.enterStartStopQualifier(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitStartStopQualifier" ):
                 listener.exitStartStopQualifier(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitStartStopQualifier" ):
                 return visitor.visitStartStopQualifier(self)
             else:
@@ -1446,7 +1446,7 @@ class STIXPatternParser ( Parser ):
 
     class WithinQualifierContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1465,15 +1465,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_withinQualifier
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterWithinQualifier" ):
                 listener.enterWithinQualifier(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitWithinQualifier" ):
                 listener.exitWithinQualifier(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitWithinQualifier" ):
                 return visitor.visitWithinQualifier(self)
             else:
@@ -1510,7 +1510,7 @@ class STIXPatternParser ( Parser ):
 
     class RepeatedQualifierContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1526,15 +1526,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_repeatedQualifier
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterRepeatedQualifier" ):
                 listener.enterRepeatedQualifier(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitRepeatedQualifier" ):
                 listener.exitRepeatedQualifier(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitRepeatedQualifier" ):
                 return visitor.visitRepeatedQualifier(self)
             else:
@@ -1565,7 +1565,7 @@ class STIXPatternParser ( Parser ):
 
     class ObjectPathContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1587,15 +1587,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_objectPath
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObjectPath" ):
                 listener.enterObjectPath(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObjectPath" ):
                 listener.exitObjectPath(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObjectPath" ):
                 return visitor.visitObjectPath(self)
             else:
@@ -1635,7 +1635,7 @@ class STIXPatternParser ( Parser ):
 
     class ObjectTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1648,15 +1648,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_objectType
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterObjectType" ):
                 listener.enterObjectType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitObjectType" ):
                 listener.exitObjectType(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitObjectType" ):
                 return visitor.visitObjectType(self)
             else:
@@ -1689,7 +1689,7 @@ class STIXPatternParser ( Parser ):
 
     class FirstPathComponentContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1702,15 +1702,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_firstPathComponent
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterFirstPathComponent" ):
                 listener.enterFirstPathComponent(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitFirstPathComponent" ):
                 listener.exitFirstPathComponent(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitFirstPathComponent" ):
                 return visitor.visitFirstPathComponent(self)
             else:
@@ -1743,7 +1743,7 @@ class STIXPatternParser ( Parser ):
 
     class ObjectPathComponentContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1752,13 +1752,13 @@ class STIXPatternParser ( Parser ):
             return STIXPatternParser.RULE_objectPathComponent
 
      
-        def copyFrom(self, ctx:ParserRuleContext):
+        def copyFrom(self, ctx                  ):
             super().copyFrom(ctx)
 
 
     class IndexPathStepContext(ObjectPathComponentContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObjectPathComponentContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObjectPathComponentContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1773,15 +1773,15 @@ class STIXPatternParser ( Parser ):
         def ASTERISK(self):
             return self.getToken(STIXPatternParser.ASTERISK, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterIndexPathStep" ):
                 listener.enterIndexPathStep(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitIndexPathStep" ):
                 listener.exitIndexPathStep(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitIndexPathStep" ):
                 return visitor.visitIndexPathStep(self)
             else:
@@ -1790,26 +1790,26 @@ class STIXPatternParser ( Parser ):
 
     class PathStepContext(ObjectPathComponentContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObjectPathComponentContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObjectPathComponentContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
-        def objectPathComponent(self, i:int=None):
+        def objectPathComponent(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.ObjectPathComponentContext)
             else:
                 return self.getTypedRuleContext(STIXPatternParser.ObjectPathComponentContext,i)
 
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPathStep" ):
                 listener.enterPathStep(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPathStep" ):
                 listener.exitPathStep(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPathStep" ):
                 return visitor.visitPathStep(self)
             else:
@@ -1818,7 +1818,7 @@ class STIXPatternParser ( Parser ):
 
     class KeyPathStepContext(ObjectPathComponentContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a STIXPatternParser.ObjectPathComponentContext
+        def __init__(self, parser, ctx                  ): # actually a STIXPatternParser.ObjectPathComponentContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
@@ -1827,15 +1827,15 @@ class STIXPatternParser ( Parser ):
         def StringLiteral(self):
             return self.getToken(STIXPatternParser.StringLiteral, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterKeyPathStep" ):
                 listener.enterKeyPathStep(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitKeyPathStep" ):
                 listener.exitKeyPathStep(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitKeyPathStep" ):
                 return visitor.visitKeyPathStep(self)
             else:
@@ -1843,7 +1843,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def objectPathComponent(self, _p:int=0):
+    def objectPathComponent(self, _p    =0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = STIXPatternParser.ObjectPathComponentContext(self, self._ctx, _parentState)
@@ -1921,7 +1921,7 @@ class STIXPatternParser ( Parser ):
 
     class SetLiteralContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1931,14 +1931,14 @@ class STIXPatternParser ( Parser ):
         def RPAREN(self):
             return self.getToken(STIXPatternParser.RPAREN, 0)
 
-        def primitiveLiteral(self, i:int=None):
+        def primitiveLiteral(self, i    =None):
             if i is None:
                 return self.getTypedRuleContexts(STIXPatternParser.PrimitiveLiteralContext)
             else:
                 return self.getTypedRuleContext(STIXPatternParser.PrimitiveLiteralContext,i)
 
 
-        def COMMA(self, i:int=None):
+        def COMMA(self, i    =None):
             if i is None:
                 return self.getTokens(STIXPatternParser.COMMA)
             else:
@@ -1947,15 +1947,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_setLiteral
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterSetLiteral" ):
                 listener.enterSetLiteral(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitSetLiteral" ):
                 listener.exitSetLiteral(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitSetLiteral" ):
                 return visitor.visitSetLiteral(self)
             else:
@@ -2014,7 +2014,7 @@ class STIXPatternParser ( Parser ):
 
     class PrimitiveLiteralContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2028,15 +2028,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_primitiveLiteral
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterPrimitiveLiteral" ):
                 listener.enterPrimitiveLiteral(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitPrimitiveLiteral" ):
                 listener.exitPrimitiveLiteral(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitPrimitiveLiteral" ):
                 return visitor.visitPrimitiveLiteral(self)
             else:
@@ -2076,7 +2076,7 @@ class STIXPatternParser ( Parser ):
 
     class OrderableLiteralContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent                  =None, invokingState    =-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2107,15 +2107,15 @@ class STIXPatternParser ( Parser ):
         def getRuleIndex(self):
             return STIXPatternParser.RULE_orderableLiteral
 
-        def enterRule(self, listener:ParseTreeListener):
+        def enterRule(self, listener                  ):
             if hasattr( listener, "enterOrderableLiteral" ):
                 listener.enterOrderableLiteral(self)
 
-        def exitRule(self, listener:ParseTreeListener):
+        def exitRule(self, listener                  ):
             if hasattr( listener, "exitOrderableLiteral" ):
                 listener.exitOrderableLiteral(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
+        def accept(self, visitor                 ):
             if hasattr( visitor, "visitOrderableLiteral" ):
                 return visitor.visitOrderableLiteral(self)
             else:
@@ -2148,7 +2148,7 @@ class STIXPatternParser ( Parser ):
 
 
 
-    def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
+    def sempred(self, localctx            , ruleIndex    , predIndex    ):
         if self._predicates == None:
             self._predicates = dict()
         self._predicates[1] = self.observationExpressions_sempred
@@ -2164,22 +2164,22 @@ class STIXPatternParser ( Parser ):
         else:
             return pred(localctx, predIndex)
 
-    def observationExpressions_sempred(self, localctx:ObservationExpressionsContext, predIndex:int):
+    def observationExpressions_sempred(self, localctx                              , predIndex    ):
             if predIndex == 0:
                 return self.precpred(self._ctx, 2)
          
 
-    def observationExpressionOr_sempred(self, localctx:ObservationExpressionOrContext, predIndex:int):
+    def observationExpressionOr_sempred(self, localctx                               , predIndex    ):
             if predIndex == 1:
                 return self.precpred(self._ctx, 2)
          
 
-    def observationExpressionAnd_sempred(self, localctx:ObservationExpressionAndContext, predIndex:int):
+    def observationExpressionAnd_sempred(self, localctx                                , predIndex    ):
             if predIndex == 2:
                 return self.precpred(self._ctx, 2)
          
 
-    def observationExpression_sempred(self, localctx:ObservationExpressionContext, predIndex:int):
+    def observationExpression_sempred(self, localctx                             , predIndex    ):
             if predIndex == 3:
                 return self.precpred(self._ctx, 3)
          
@@ -2192,17 +2192,17 @@ class STIXPatternParser ( Parser ):
                 return self.precpred(self._ctx, 1)
          
 
-    def comparisonExpression_sempred(self, localctx:ComparisonExpressionContext, predIndex:int):
+    def comparisonExpression_sempred(self, localctx                            , predIndex    ):
             if predIndex == 6:
                 return self.precpred(self._ctx, 2)
          
 
-    def comparisonExpressionAnd_sempred(self, localctx:ComparisonExpressionAndContext, predIndex:int):
+    def comparisonExpressionAnd_sempred(self, localctx                               , predIndex    ):
             if predIndex == 7:
                 return self.precpred(self._ctx, 2)
          
 
-    def objectPathComponent_sempred(self, localctx:ObjectPathComponentContext, predIndex:int):
+    def objectPathComponent_sempred(self, localctx                           , predIndex    ):
             if predIndex == 8:
                 return self.precpred(self._ctx, 3)
          

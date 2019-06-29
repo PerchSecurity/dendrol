@@ -9,281 +9,281 @@ else:
 class STIXPatternListener(ParseTreeListener):
 
     # Enter a parse tree produced by STIXPatternParser#pattern.
-    def enterPattern(self, ctx:STIXPatternParser.PatternContext):
+    def enterPattern(self, ctx                                 ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#pattern.
-    def exitPattern(self, ctx:STIXPatternParser.PatternContext):
+    def exitPattern(self, ctx                                 ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressions.
-    def enterObservationExpressions(self, ctx:STIXPatternParser.ObservationExpressionsContext):
+    def enterObservationExpressions(self, ctx                                                ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressions.
-    def exitObservationExpressions(self, ctx:STIXPatternParser.ObservationExpressionsContext):
+    def exitObservationExpressions(self, ctx                                                ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionOr.
-    def enterObservationExpressionOr(self, ctx:STIXPatternParser.ObservationExpressionOrContext):
+    def enterObservationExpressionOr(self, ctx                                                 ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionOr.
-    def exitObservationExpressionOr(self, ctx:STIXPatternParser.ObservationExpressionOrContext):
+    def exitObservationExpressionOr(self, ctx                                                 ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionAnd.
-    def enterObservationExpressionAnd(self, ctx:STIXPatternParser.ObservationExpressionAndContext):
+    def enterObservationExpressionAnd(self, ctx                                                  ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionAnd.
-    def exitObservationExpressionAnd(self, ctx:STIXPatternParser.ObservationExpressionAndContext):
+    def exitObservationExpressionAnd(self, ctx                                                  ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionRepeated.
-    def enterObservationExpressionRepeated(self, ctx:STIXPatternParser.ObservationExpressionRepeatedContext):
+    def enterObservationExpressionRepeated(self, ctx                                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionRepeated.
-    def exitObservationExpressionRepeated(self, ctx:STIXPatternParser.ObservationExpressionRepeatedContext):
+    def exitObservationExpressionRepeated(self, ctx                                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionSimple.
-    def enterObservationExpressionSimple(self, ctx:STIXPatternParser.ObservationExpressionSimpleContext):
+    def enterObservationExpressionSimple(self, ctx                                                     ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionSimple.
-    def exitObservationExpressionSimple(self, ctx:STIXPatternParser.ObservationExpressionSimpleContext):
+    def exitObservationExpressionSimple(self, ctx                                                     ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionCompound.
-    def enterObservationExpressionCompound(self, ctx:STIXPatternParser.ObservationExpressionCompoundContext):
+    def enterObservationExpressionCompound(self, ctx                                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionCompound.
-    def exitObservationExpressionCompound(self, ctx:STIXPatternParser.ObservationExpressionCompoundContext):
+    def exitObservationExpressionCompound(self, ctx                                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionWithin.
-    def enterObservationExpressionWithin(self, ctx:STIXPatternParser.ObservationExpressionWithinContext):
+    def enterObservationExpressionWithin(self, ctx                                                     ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionWithin.
-    def exitObservationExpressionWithin(self, ctx:STIXPatternParser.ObservationExpressionWithinContext):
+    def exitObservationExpressionWithin(self, ctx                                                     ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#observationExpressionStartStop.
-    def enterObservationExpressionStartStop(self, ctx:STIXPatternParser.ObservationExpressionStartStopContext):
+    def enterObservationExpressionStartStop(self, ctx                                                        ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#observationExpressionStartStop.
-    def exitObservationExpressionStartStop(self, ctx:STIXPatternParser.ObservationExpressionStartStopContext):
+    def exitObservationExpressionStartStop(self, ctx                                                        ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#comparisonExpression.
-    def enterComparisonExpression(self, ctx:STIXPatternParser.ComparisonExpressionContext):
+    def enterComparisonExpression(self, ctx                                              ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#comparisonExpression.
-    def exitComparisonExpression(self, ctx:STIXPatternParser.ComparisonExpressionContext):
+    def exitComparisonExpression(self, ctx                                              ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#comparisonExpressionAnd.
-    def enterComparisonExpressionAnd(self, ctx:STIXPatternParser.ComparisonExpressionAndContext):
+    def enterComparisonExpressionAnd(self, ctx                                                 ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#comparisonExpressionAnd.
-    def exitComparisonExpressionAnd(self, ctx:STIXPatternParser.ComparisonExpressionAndContext):
+    def exitComparisonExpressionAnd(self, ctx                                                 ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestEqual.
-    def enterPropTestEqual(self, ctx:STIXPatternParser.PropTestEqualContext):
+    def enterPropTestEqual(self, ctx                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestEqual.
-    def exitPropTestEqual(self, ctx:STIXPatternParser.PropTestEqualContext):
+    def exitPropTestEqual(self, ctx                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestOrder.
-    def enterPropTestOrder(self, ctx:STIXPatternParser.PropTestOrderContext):
+    def enterPropTestOrder(self, ctx                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestOrder.
-    def exitPropTestOrder(self, ctx:STIXPatternParser.PropTestOrderContext):
+    def exitPropTestOrder(self, ctx                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestSet.
-    def enterPropTestSet(self, ctx:STIXPatternParser.PropTestSetContext):
+    def enterPropTestSet(self, ctx                                     ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestSet.
-    def exitPropTestSet(self, ctx:STIXPatternParser.PropTestSetContext):
+    def exitPropTestSet(self, ctx                                     ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestLike.
-    def enterPropTestLike(self, ctx:STIXPatternParser.PropTestLikeContext):
+    def enterPropTestLike(self, ctx                                      ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestLike.
-    def exitPropTestLike(self, ctx:STIXPatternParser.PropTestLikeContext):
+    def exitPropTestLike(self, ctx                                      ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestRegex.
-    def enterPropTestRegex(self, ctx:STIXPatternParser.PropTestRegexContext):
+    def enterPropTestRegex(self, ctx                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestRegex.
-    def exitPropTestRegex(self, ctx:STIXPatternParser.PropTestRegexContext):
+    def exitPropTestRegex(self, ctx                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestIsSubset.
-    def enterPropTestIsSubset(self, ctx:STIXPatternParser.PropTestIsSubsetContext):
+    def enterPropTestIsSubset(self, ctx                                          ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestIsSubset.
-    def exitPropTestIsSubset(self, ctx:STIXPatternParser.PropTestIsSubsetContext):
+    def exitPropTestIsSubset(self, ctx                                          ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestIsSuperset.
-    def enterPropTestIsSuperset(self, ctx:STIXPatternParser.PropTestIsSupersetContext):
+    def enterPropTestIsSuperset(self, ctx                                            ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestIsSuperset.
-    def exitPropTestIsSuperset(self, ctx:STIXPatternParser.PropTestIsSupersetContext):
+    def exitPropTestIsSuperset(self, ctx                                            ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#propTestParen.
-    def enterPropTestParen(self, ctx:STIXPatternParser.PropTestParenContext):
+    def enterPropTestParen(self, ctx                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#propTestParen.
-    def exitPropTestParen(self, ctx:STIXPatternParser.PropTestParenContext):
+    def exitPropTestParen(self, ctx                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#startStopQualifier.
-    def enterStartStopQualifier(self, ctx:STIXPatternParser.StartStopQualifierContext):
+    def enterStartStopQualifier(self, ctx                                            ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#startStopQualifier.
-    def exitStartStopQualifier(self, ctx:STIXPatternParser.StartStopQualifierContext):
+    def exitStartStopQualifier(self, ctx                                            ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#withinQualifier.
-    def enterWithinQualifier(self, ctx:STIXPatternParser.WithinQualifierContext):
+    def enterWithinQualifier(self, ctx                                         ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#withinQualifier.
-    def exitWithinQualifier(self, ctx:STIXPatternParser.WithinQualifierContext):
+    def exitWithinQualifier(self, ctx                                         ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#repeatedQualifier.
-    def enterRepeatedQualifier(self, ctx:STIXPatternParser.RepeatedQualifierContext):
+    def enterRepeatedQualifier(self, ctx                                           ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#repeatedQualifier.
-    def exitRepeatedQualifier(self, ctx:STIXPatternParser.RepeatedQualifierContext):
+    def exitRepeatedQualifier(self, ctx                                           ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#objectPath.
-    def enterObjectPath(self, ctx:STIXPatternParser.ObjectPathContext):
+    def enterObjectPath(self, ctx                                    ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#objectPath.
-    def exitObjectPath(self, ctx:STIXPatternParser.ObjectPathContext):
+    def exitObjectPath(self, ctx                                    ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#objectType.
-    def enterObjectType(self, ctx:STIXPatternParser.ObjectTypeContext):
+    def enterObjectType(self, ctx                                    ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#objectType.
-    def exitObjectType(self, ctx:STIXPatternParser.ObjectTypeContext):
+    def exitObjectType(self, ctx                                    ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#firstPathComponent.
-    def enterFirstPathComponent(self, ctx:STIXPatternParser.FirstPathComponentContext):
+    def enterFirstPathComponent(self, ctx                                            ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#firstPathComponent.
-    def exitFirstPathComponent(self, ctx:STIXPatternParser.FirstPathComponentContext):
+    def exitFirstPathComponent(self, ctx                                            ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#indexPathStep.
-    def enterIndexPathStep(self, ctx:STIXPatternParser.IndexPathStepContext):
+    def enterIndexPathStep(self, ctx                                       ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#indexPathStep.
-    def exitIndexPathStep(self, ctx:STIXPatternParser.IndexPathStepContext):
+    def exitIndexPathStep(self, ctx                                       ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#pathStep.
-    def enterPathStep(self, ctx:STIXPatternParser.PathStepContext):
+    def enterPathStep(self, ctx                                  ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#pathStep.
-    def exitPathStep(self, ctx:STIXPatternParser.PathStepContext):
+    def exitPathStep(self, ctx                                  ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#keyPathStep.
-    def enterKeyPathStep(self, ctx:STIXPatternParser.KeyPathStepContext):
+    def enterKeyPathStep(self, ctx                                     ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#keyPathStep.
-    def exitKeyPathStep(self, ctx:STIXPatternParser.KeyPathStepContext):
+    def exitKeyPathStep(self, ctx                                     ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#setLiteral.
-    def enterSetLiteral(self, ctx:STIXPatternParser.SetLiteralContext):
+    def enterSetLiteral(self, ctx                                    ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#setLiteral.
-    def exitSetLiteral(self, ctx:STIXPatternParser.SetLiteralContext):
+    def exitSetLiteral(self, ctx                                    ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#primitiveLiteral.
-    def enterPrimitiveLiteral(self, ctx:STIXPatternParser.PrimitiveLiteralContext):
+    def enterPrimitiveLiteral(self, ctx                                          ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#primitiveLiteral.
-    def exitPrimitiveLiteral(self, ctx:STIXPatternParser.PrimitiveLiteralContext):
+    def exitPrimitiveLiteral(self, ctx                                          ):
         pass
 
 
     # Enter a parse tree produced by STIXPatternParser#orderableLiteral.
-    def enterOrderableLiteral(self, ctx:STIXPatternParser.OrderableLiteralContext):
+    def enterOrderableLiteral(self, ctx                                          ):
         pass
 
     # Exit a parse tree produced by STIXPatternParser#orderableLiteral.
-    def exitOrderableLiteral(self, ctx:STIXPatternParser.OrderableLiteralContext):
+    def exitOrderableLiteral(self, ctx                                          ):
         pass
 
 

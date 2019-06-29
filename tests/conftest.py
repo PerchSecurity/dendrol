@@ -11,7 +11,7 @@ from ww import f
 INITIAL_TERMWIDTH = get_terminal_width()
 
 
-def pytest_assertrepr_compare(config: Config, op: str, left, right):
+def pytest_assertrepr_compare(config        , op     , left, right):
     # Local import to avoid preclusion of pytest's assertion rewriting
     from dendrol import PatternTree
 

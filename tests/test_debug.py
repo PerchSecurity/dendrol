@@ -121,7 +121,7 @@ pattern:
 RGX_TEST_NAME = re.compile(r'^name: (\S+)\s+', re.MULTILINE)
 
 
-def get_tests() -> Iterable[Tuple[str, str, PatternTree]]:
+def get_tests()                                          :
     docs = TESTS.split('\n---\n')
     for i, doc in enumerate(docs):
         doc = doc.strip()
@@ -141,7 +141,7 @@ def get_tests() -> Iterable[Tuple[str, str, PatternTree]]:
     pytest.param(source, tree, id=name)
     for name, source, tree in get_tests()
 ])
-def test_yaml_repr(source: str, tree: PatternTree):
+def test_yaml_repr(source     , tree             ):
     expected = source
     actual = tree.serialize().strip()
     assert expected == actual

@@ -13,12 +13,12 @@ DEFAULT_SET_TAG = 'tag:yaml.org,2002:set'
 DEFAULT_SLICE_TAG = '!slice'
 
 
-def load_tree(s: str) -> PatternTree:
+def load_tree(s     )               :
     d = yaml.load(s, Loader=PatternTreeLoader)
     return PatternTree.from_dict(d)
 
 
-def dump_tree(tree: Union[Any, PatternTree]) -> str:
+def dump_tree(tree                         )       :
     return yaml.dump(
         tree,
         Dumper=PatternTreeDumper,
@@ -28,7 +28,7 @@ def dump_tree(tree: Union[Any, PatternTree]) -> str:
     )
 
 
-def print_tree(tree: Union[dict, PatternTree]):
+def print_tree(tree                          ):
     print(dump_tree(tree))
 
 
@@ -86,24 +86,24 @@ class PatternTreeDumper(yaml.Dumper):
         """Don't print "null" for None; only """
         return self.represent_scalar('tag:yaml.org,2002:null', '')
 
-    def represent_pattern_tree(self, data: PatternTree):
+    def represent_pattern_tree(self, data             ):
         return self.represent_mapping('!dict', data)
 
-    def represent_ordered_dict(self, data: OrderedDict):
+    def represent_ordered_dict(self, data             ):
         return self.represent_mapping('!dict', data.items())
 
-    def represent_datetime(self, data: datetime):
+    def represent_datetime(self, data          ):
         value = data.strftime('%Y-%m-%dT%H:%M:%SZ')
         return self.represent_scalar('tag:yaml.org,2002:timestamp', value)
 
-    def represent_compactible_object(self, data: CompactibleObject):
+    def represent_compactible_object(self, data                   ):
         data_type = data.get_literal_type()
         representer = self.yaml_representers.get(data_type) or self.__class__.represent_data
         node = representer(self, data)
         node.flow_style = data.is_eligible_for_compaction()
         return node
 
-    def represent_slice(self, data: slice):
+    def represent_slice(self, data       ):
         if data.step is not None:
             components = [data.start, data.stop, data.step]
         elif data.start is not None:
