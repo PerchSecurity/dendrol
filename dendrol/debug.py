@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Union, Any
 
 import yaml
+from ww import f
 
 from .transform import CompactibleObject, PatternTree
 
@@ -115,7 +116,7 @@ class PatternTreeDumper(yaml.Dumper):
             for comp in components
         )
 
-        return self.represent_scalar(DEFAULT_SLICE_TAG, f'[{s}]', style='')
+        return self.represent_scalar(DEFAULT_SLICE_TAG, f('[{s}]'), style='')
 
     def expect_flow_mapping(self):
         if self.event.tag == DEFAULT_SET_TAG:
@@ -237,7 +238,7 @@ class PatternTreeLoader(yaml.Loader):
 
             return yaml.ScalarNode(
                 DEFAULT_SLICE_TAG,
-                f'[{node.value[0].value}]',
+                f('[{node.value[0].value}]'),
                 node.start_mark,
                 node.end_mark,
             )

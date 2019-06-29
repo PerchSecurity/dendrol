@@ -3,6 +3,7 @@ import binascii
 from collections import OrderedDict
 from datetime import date, datetime, tzinfo
 from typing import Iterable, List, Type, Union, Set, TypeVar, NewType, Dict
+from ww import f
 
 from . import tz
 from .lang.STIXPatternParser import STIXPatternParser, ParserRuleContext
@@ -69,8 +70,8 @@ class PatternTree(dict):
             node_type, body = next(iter(node.items()))
             if node_type not in OBSERVATION_TYPES:
                 raise ValueError(
-                    f'Unexpected observation type {repr(node_type)}. '
-                    f'Expected one of: {OBSERVATION_TYPES.keys()}')
+                    f('Unexpected observation type {repr(node_type)}. '
+                      'Expected one of: {OBSERVATION_TYPES.keys()}'))
 
             formatter = OBSERVATION_TYPES[node_type]
             node.update(formatter(**body))
@@ -98,8 +99,8 @@ class PatternTree(dict):
             qualifier_type, body = next(iter(qualifier.items()))
             if qualifier_type not in QUALIFIER_TYPES:
                 raise ValueError(
-                    f'Unexpected qualifier type {repr(qualifier_type)}. '
-                    f'Expected one of: {QUALIFIER_TYPES.keys()}')
+                    f('Unexpected qualifier type {repr(qualifier_type)}. '
+                      'Expected one of: {QUALIFIER_TYPES.keys()}'))
 
             formatter = QUALIFIER_TYPES[qualifier_type]
             qualifier.update(formatter(**body))
@@ -119,8 +120,8 @@ class PatternTree(dict):
             node_type, body = next(iter(node.items()))
             if node_type not in COMPARISON_TYPES:
                 raise ValueError(
-                    f'Unexpected comparison type {repr(node_type)}. '
-                    f'Expected one of: {COMPARISON_TYPES.keys()}')
+                    f('Unexpected comparison type {repr(node_type)}. '
+                      'Expected one of: {COMPARISON_TYPES.keys()}'))
 
             formatter = COMPARISON_TYPES[node_type]
             node.update(formatter(**body))
@@ -868,7 +869,7 @@ def convert_stix_datetime(timestamp_str: str, ignore_case: bool=False) -> dateti
     # case-sensitivity for timestamp literals inside patterns and JSON
     # (for the "T" and "Z" chars).  So check case first.
     if not ignore_case and any(c.islower() for c in timestamp_str):
-        raise ValueError(f'Invalid timestamp format (require upper case): {timestamp_str}')
+        raise ValueError(f('Invalid timestamp format (require upper case): {timestamp_str}'))
 
     # Can't create a pattern with an optional part... so use two patterns
     if '.' in timestamp_str:

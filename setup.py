@@ -11,13 +11,11 @@ VERSION_PATH = PACKAGE_DIR / 'version.py'
 
 
 def get_readme() -> str:
-    with open(README_PATH) as fp:
-        return fp.read()
+    return README_PATH.read_text()
 
 
 def get_version() -> str:
-    with open(VERSION_PATH) as fp:
-        source = fp.read()
+    source = VERSION_PATH.read_text()
 
     context = {}
     exec(source, context)

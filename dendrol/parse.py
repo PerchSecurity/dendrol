@@ -4,6 +4,7 @@ import antlr4
 import antlr4.error.Errors
 import antlr4.error.ErrorListener
 import six
+from ww import f
 
 from .debug import print_tree
 from .lang.STIXPatternLexer import STIXPatternLexer
@@ -18,7 +19,7 @@ class ParserErrorListener(antlr4.error.ErrorListener.ErrorListener):
     Simple error listener which just remembers the last error message received.
     """
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        self.error_message = f'{line}:{column}: {msg}'
+        self.error_message = f('{line}:{column}: {msg}')
 
 
 class ParseException(Exception):

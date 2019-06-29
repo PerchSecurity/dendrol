@@ -7,6 +7,7 @@ from typing import Iterable, Union
 import click
 import requests
 from tqdm import tqdm
+from ww import f
 
 
 @click.command()
@@ -36,14 +37,14 @@ def compile_stix_grammar(output, force_antlr_download: bool, progress: bool):
 
     elif not is_antlr_jar_saved(output):
         will_download_antlr = True
-        click.echo(f'ANTLR .jar not found at: {jar_path}', color='orange')
+        click.echo(f('ANTLR .jar not found at: {jar_path}'), color='orange')
 
     if will_download_antlr:
-        click.echo(f'Downloading ANTLR .jar to: {jar_path}')
+        click.echo(f('Downloading ANTLR .jar to: {jar_path}'))
         save_antlr_jar(directory=output, display_progress=progress)
 
     compile_grammar(output_dir=output)
-    click.echo(f'Successfully compiled grammar to: {output}', color='green')
+    click.echo(f('Successfully compiled grammar to: {output}'), color='green')
 
 
 def is_java_installed() -> bool:

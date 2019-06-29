@@ -2,6 +2,7 @@ import re
 from typing import Tuple, Iterable
 
 import pytest
+from ww import f
 
 from dendrol import PatternTree, load_tree
 
@@ -130,7 +131,7 @@ def get_tests() -> Iterable[Tuple[str, str, PatternTree]]:
             name = name_match.group(1)
             doc = RGX_TEST_NAME.sub('', doc)
         else:
-            name = f'doc {i}'
+            name = f('doc {i}')
 
         tree = load_tree(doc)
         yield name, doc, tree

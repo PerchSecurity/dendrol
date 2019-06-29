@@ -1,6 +1,7 @@
 from _pytest.config import Config
 from icdiff import ConsoleDiff
 from py._io.terminalwriter import get_terminal_width
+from ww import f
 
 
 # This is done during initialization, before any tests are run, instead of
@@ -24,7 +25,7 @@ def pytest_assertrepr_compare(config: Config, op: str, left, right):
     if op == '==' and isinstance(left, PatternTree) and isinstance(right, PatternTree):
         left_desc = 'PatternTree(<left>)'
         right_desc = 'PatternTree(<right>)'
-        rewritten_assert = f'{left_desc} {op} {right_desc}'
+        rewritten_assert = f('{left_desc} {op} {right_desc}')
 
         summary = 'The pattern trees are not equivalent. Full diff:'
 
